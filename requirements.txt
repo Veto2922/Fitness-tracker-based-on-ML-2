@@ -1,7 +1,11 @@
 # local package
 -e .
 <<<<<<< HEAD
+<<<<<<< HEAD
 mona nafea
+=======
+mona nafea.
+>>>>>>> 0dfa2f12867de22e6c9319709a064f775d84e33a
 !!
 =======
 mona nafea!
