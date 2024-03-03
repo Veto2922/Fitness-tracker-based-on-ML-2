@@ -1,6 +1,6 @@
 # local package
 -e .
-mona nafea
+mona nafea!
 # external requirements
 click
 Sphinx
