@@ -1,7 +1,11 @@
 # local package
 -e .
+<<<<<<< HEAD
 mona nafea
 !!
+=======
+mona nafea!
+>>>>>>> 2a09ca2e60a8baeafcf5a12ff87cca5f410d2f54
 # external requirements
 click
 Sphinx
