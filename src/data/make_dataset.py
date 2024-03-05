@@ -73,14 +73,15 @@ for f in files:
 # Working with datetimes
 # --------------------------------------------------------------
 
-acc_df.info()
+# acc_df.info()
 
-pd.to_datetime(df["epoch (ms)"], unit="ms")
+# pd.to_datetime(df["epoch (ms)"], unit="ms")
 
-pd.to_datetime(df["time (01:00)"])
+pd.to_datetime(acc_df["time (01:00)"], format="mixed")
+pd.to_datetime(gyr_df["time (01:00)"], format="mixed")
 
-acc_df.index = pd.to_datetime(acc_df["epoch (ms)"], unit="ms")
-gyr_df.index = pd.to_datetime(gyr_df["epoch (ms)"], unit="ms")
+acc_df.index = pd.to_datetime(acc_df["time (01:00)"], format="mixed")
+gyr_df.index = pd.to_datetime(gyr_df["time (01:00)"], format="mixed")
 
 acc_df.drop(columns=["epoch (ms)", "time (01:00)", "elapsed (s)"], inplace=True)
 gyr_df.drop(columns=["epoch (ms)", "time (01:00)", "elapsed (s)"], inplace=True)
@@ -93,43 +94,59 @@ files = glob("../../data/raw/MetaMotion/*.csv")
 
 
 def read_data_from_files(files):
+    data_path = "../../data/raw/MetaMotion\\"
+
     acc_df = pd.DataFrame()
     gyr_df = pd.DataFrame()
 
     acc_set = 1
     gyr_set = 1
-    
-    data_path = "../../data/raw/MetaMotion\\"
 
-    for f in files:
+    for file in files:
+        split_items = file.split("-")
 
-        participant = f.split("-")[0].replace(data_path, "")
-        label = f.split("-")[1]
-        category = f.split("-")[2].rstrip("123").rstrip("_MetaWear_2019")
+        participant = split_items[0].replace(data_path, "")
+        label = split_items[1]
+        # remove the number from our workout category
+        category = split_items[2].rstrip("123").rstrip("_MetaWear_2019")
 
-        df = pd.read_csv(f)
+        curr_df = pd.read_csv(file)
 
-        df["participant"] = participant
-        df["label"] = label
-        df["category"] = category
+        curr_df["participant"] = participant
+        curr_df["label"] = label
+        curr_df["category"] = category
 
-        if "Accelerometer" in f:
-            df["set"] = acc_set
+        # continue to add new rows (series) to the dataframe
+        # 'set' is just an arbitrary identifier
+        if "Accelerometer" in file:
+            curr_df["set"] = acc_set
             acc_set += 1
-            acc_df = pd.concat([acc_df, df])
+            acc_df = pd.concat([acc_df, curr_df])
 
-        elif "Gyroscope" in f:
-            df["set"] = gyr_set
+        if "Gyroscope" in file:
+            curr_df["set"] = gyr_set
             gyr_set += 1
-            gyr_df = pd.concat([gyr_df, df])
+            gyr_df = pd.concat([gyr_df, curr_df])
 
-    acc_df.index = pd.to_datetime(acc_df["epoch (ms)"], unit="ms")
-    gyr_df.index = pd.to_datetime(gyr_df["epoch (ms)"], unit="ms")
+    # set datetime as index to convert to a time series database
+    acc_df.index = pd.to_datetime(acc_df["time (01:00)"], format="mixed")
+    gyr_df.index = pd.to_datetime(gyr_df["time (01:00)"], format="mixed")
 
+    # now we can get rid of all features referencing time
     acc_df.drop(columns=["epoch (ms)", "time (01:00)", "elapsed (s)"], inplace=True)
     gyr_df.drop(columns=["epoch (ms)", "time (01:00)", "elapsed (s)"], inplace=True)
 
+    # another way to delete the columns
+    # del acc_df["epoch (ms)"]
+    # del acc_df["time (01:00)"]
+    # del acc_df["elapsed (s)"]
+
+    # del gyr_df["epoch (ms)"]
+    # del gyr_df["time (01:00)"]
+    # del gyr_df["elapsed (s)"]
+
     return acc_df, gyr_df
+
 
 acc_df, gyr_df = read_data_from_files(files)
 
@@ -137,7 +154,25 @@ acc_df, gyr_df = read_data_from_files(files)
 # Merging datasets
 # --------------------------------------------------------------
 
-data_merged = pd.concat([acc_df.iloc[:,:3], gyr_df], axis=1)
+data_merged = pd.merge(
+    acc_df.iloc[:, :3], gyr_df, right_index=True, left_index=True, how="outer"
+)
+
+data_merged.index.rename("epoch (ms)", inplace=True)
+
+data_merged.columns = [
+    "acc_x",
+    "acc_y",
+    "acc_z",
+    "gyr_x",
+    "gyr_y",
+    "gyr_z",
+    "participant",
+    "label",
+    "category",
+    "set",
+]
+
 
 # --------------------------------------------------------------
 # Resample data (frequency conversion)
@@ -147,6 +182,29 @@ data_merged = pd.concat([acc_df.iloc[:,:3], gyr_df], axis=1)
 # Gyroscope:        25.000Hz
 
 
+sampling = {
+    "acc_x": "mean",
+    "acc_y": "mean",
+    "acc_z": "mean",
+    "gyr_x": "mean",
+    "gyr_y": "mean",
+    "gyr_z": "mean",
+    "participant": "last",
+    "label": "last",
+    "category": "last",
+    "set": "last"
+}
+
+# group by day
+days = [g for n, g in data_merged.groupby(pd.Grouper(freq='D'))]
+days_resampled = pd.concat([df.resample(rule="200ms").apply(sampling).dropna() for df in days])
+
+days_resampled['set'] = days_resampled['set'].astype('int')
+
+days_resampled.info()
+
 # --------------------------------------------------------------
 # Export dataset
 # --------------------------------------------------------------
+
+days_resampled.to_pickle('../../data/interim/01_data_processed.pkl')
