@@ -192,14 +192,16 @@ sampling = {
     "participant": "last",
     "label": "last",
     "category": "last",
-    "set": "last"
+    "set": "last",
 }
 
 # group by day
-days = [g for n, g in data_merged.groupby(pd.Grouper(freq='D'))]
-days_resampled = pd.concat([df.resample(rule="200ms").apply(sampling).dropna() for df in days])
+days = [g for n, g in data_merged.groupby(pd.Grouper(freq="D"))]
+days_resampled = pd.concat(
+    [df.resample(rule="200ms").apply(sampling).dropna() for df in days]
+)
 
-days_resampled['set'] = days_resampled['set'].astype('int')
+days_resampled["set"] = days_resampled["set"].astype("int")
 
 days_resampled.info()
 
@@ -207,4 +209,4 @@ days_resampled.info()
 # Export dataset
 # --------------------------------------------------------------
 
-days_resampled.to_pickle('../../data/interim/01_data_processed.pkl')
+days_resampled.to_pickle("../../data/interim/01_data_processed.pkl")
