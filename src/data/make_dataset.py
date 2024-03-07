@@ -150,7 +150,6 @@ acc_df,gyr_df = read_data_from_files(files)
 # We only select the first three columns (acc_x, acc_y, acc_z) from the accelerometer DataFrame (acc_df)
 # as the participant, label, and category information are repeated for each of the two DataFrames.
 data_merged = pd.concat([acc_df.iloc[:,:3],gyr_df],axis = 1)
-data_merged.dropna()
 
 
 # renaming columns 
