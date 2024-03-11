@@ -43,7 +43,7 @@ gyr_set = 1
 for f in files:
     participate = f.split("-")[0][-1]
     label = f.split("-")[1]
-    category = f.split("-")[2].rstrip('123').rstrip('_MetaWear_2019')
+    category = f.split("-")[2].rstrip("123").rstrip("_MetaWear_2019")
 
     df = pd.read_csv(f)
 
@@ -57,8 +57,9 @@ for f in files:
         acc_df = pd.concat([acc_df,df])
     else:
         gyr_df = pd.concat([gyr_df,df])
+    print(f)
 
-##gyr_df["category"].unique()
+gyr_df["category"].unique()
     
 # --------------------------------------------------------------
 # Working with datetimes
@@ -104,7 +105,7 @@ def read_data_from_files(files):
         # Extracting participant, label, and category information from file names
         participate = f.split("-")[0][-1]
         label = f.split("-")[1]
-        category = f.split("-")[2].rstrip('123').rstrip('_MetaWear_2019')
+        category = f.split("-")[2].rstrip("123").rstrip("_MetaWear_2019")
 
         # Reading data from CSV file
         df = pd.read_csv(f)
@@ -141,7 +142,7 @@ def read_data_from_files(files):
 
 acc_df,gyr_df = read_data_from_files(files)   
 
-
+acc_df["label"].unique()
 # --------------------------------------------------------------
 # Merging datasets
 # --------------------------------------------------------------
