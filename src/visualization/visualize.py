@@ -31,7 +31,10 @@ plt.plot(set_df["acc_y"].reset_index(drop = True))
 for ex in df["label"].unique():
     exercise_set = df[df["label"] == ex]
     # Plot the first 100 values of 'acc_x' for each exercise, with labels
-    plt.plot(exercise_set[:100]["acc_x"].reset_index(drop = True),label=ex)
+    plt.plot(exercise_set[:100]["acc_y"].reset_index(drop = True),label=ex)
+    plt.title("Accelerometer Readings of Different Exercises")
+    plt.xlabel("Sample Index (First 100 values)")
+    plt.ylabel("Acceleration (acc_y)")
     plt.legend()
 
 
@@ -59,16 +62,15 @@ mpl.rcParams["figure.dpi"] = 100
 # --------------------------------------------------------------
 
 # Selecting data for squats performed by participant D
-category_df = df.query("label == 'squat'").query("participant == 'D'").reset_index()
+category_df = df.query("label == 'squat'").query("participant == 'A'").reset_index(drop=True)
 # Grouping the data by category and plotting the 'acc_y' values
 category_df.groupby(["category"])["acc_y"].plot()
 
-plt.legend(title='category')  # Add a legend with the title 'category'
+plt.legend(title='Category')  # Add a legend with the title 'category'
 # Adding labels for the x and y axes
-plt.xlabel("acc_y")  
-plt.ylabel("samples")
+plt.ylabel("Acceleration (acc_y)")  
+plt.xlabel("Number of Samples")
 plt.show()  # Displaying the plot
-
 
 # --------------------------------------------------------------
 # Analyzing the distribution of categories for each exercise label
@@ -98,6 +100,10 @@ participant_df = df[df["label"] == 'bench'].sort_values(by="participant").reset_
 
 # Grouping the data by participant and plotting the 'acc_y' values for each participant
 participant_df.groupby("participant")["acc_y"].plot()
+plt.xlabel("Number of Samples")
+plt.ylabel("Acceleration (acc_y)")
+plt.legend()
+
 
 # --------------------------------------------------------------
 # Plot multiple axis
@@ -161,8 +167,10 @@ combined_df[["gyr_x","gyr_y","gyr_z"]].plot(ax=ax[1])
 # Add legends to each subplot
 ax[0].legend(loc="upper center",ncol=3,fancybox=True,shadow=True,bbox_to_anchor=(0.5,1.15))
 ax[1].legend(loc="upper center",ncol=3,fancybox=True,shadow=True,bbox_to_anchor=(0.5,1.15))
-
-ax[0].set_xlabel("samples")  # Add xlabel shared by both subplots
+ax[0].set_ylabel("Sensor Readings")  # Add ylabel for the first subplot
+ax[1].set_ylabel("Sensor Readings")  # Add ylabel for the second subplot
+ax[1].set_xlabel("Number of Samples")  # Add xlabel shared by both subplots
+#Comparison of Accelerometer and Gyroscope Data for Participant D
 
 # --------------------------------------------------------------
 # Loop over all combinations and export for both sensors

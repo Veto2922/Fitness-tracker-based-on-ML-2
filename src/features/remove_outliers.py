@@ -143,6 +143,8 @@ for col in oultier_cols:
     IQR_outlier = mark_outliers_iqr(df,col)
     # Plot binary outliers
     plot_binary_outliers(IQR_outlier, col, col + "_outlier", True)
+    
+
 
 # --------------------------------------------------------------
 # Chauvenets criteron (distribution based)
@@ -212,7 +214,7 @@ for col in oultier_cols:
 # --------------------------------------------------------------
 
 # Insert LOF function
-def mark_outliers_lof(dataset, columns, n=20):
+def mark_outliers_lof(dataset, columns, n=5):
     """Mark values as outliers using LOF
 
     Args:
@@ -319,7 +321,7 @@ for label in df["label"].unique():
         print(f"removed {n_outliers} from {col} for {label}")
     # Update the total number of outliers removed
     no_LOF_outliers+= n_outliers
-    
+print(no_LOF_outliers)
 # --------------------------------------------------------------
 # Export new dataframe
 # --------------------------------------------------------------
