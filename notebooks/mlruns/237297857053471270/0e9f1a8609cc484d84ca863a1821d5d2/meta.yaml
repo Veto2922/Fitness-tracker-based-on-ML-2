@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/HP/Fitness-tracker-based-on-ML-2/notebooks/mlruns/237297857053471270/0e9f1a8609cc484d84ca863a1821d5d2/artifacts
+end_time: 1711224334157
+entry_point_name: ''
+experiment_id: '237297857053471270'
+lifecycle_stage: active
+run_id: 0e9f1a8609cc484d84ca863a1821d5d2
+run_name: honorable-worm-732
+run_uuid: 0e9f1a8609cc484d84ca863a1821d5d2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711224334007
+status: 3
+tags: []
+user_id: HP

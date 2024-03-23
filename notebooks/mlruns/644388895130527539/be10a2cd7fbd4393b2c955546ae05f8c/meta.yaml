@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/HP/Fitness-tracker-based-on-ML-2/notebooks/mlruns/644388895130527539/be10a2cd7fbd4393b2c955546ae05f8c/artifacts
+end_time: 1711224424844
+entry_point_name: ''
+experiment_id: '644388895130527539'
+lifecycle_stage: active
+run_id: be10a2cd7fbd4393b2c955546ae05f8c
+run_name: serious-fowl-62
+run_uuid: be10a2cd7fbd4393b2c955546ae05f8c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711224424715
+status: 3
+tags: []
+user_id: HP

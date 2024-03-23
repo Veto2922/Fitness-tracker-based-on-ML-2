@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/HP/Fitness-tracker-based-on-ML-2/notebooks/mlruns/828910791919044872/dfb79349e5fe40f5a299c45eed6b6c17/artifacts
+end_time: 1711224376147
+entry_point_name: ''
+experiment_id: '828910791919044872'
+lifecycle_stage: active
+run_id: dfb79349e5fe40f5a299c45eed6b6c17
+run_name: loud-eel-153
+run_uuid: dfb79349e5fe40f5a299c45eed6b6c17
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711224376001
+status: 3
+tags: []
+user_id: HP

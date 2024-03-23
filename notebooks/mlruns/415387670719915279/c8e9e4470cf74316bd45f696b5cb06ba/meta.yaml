@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/HP/Fitness-tracker-based-on-ML-2/notebooks/mlruns/415387670719915279/c8e9e4470cf74316bd45f696b5cb06ba/artifacts
+end_time: 1711224310394
+entry_point_name: ''
+experiment_id: '415387670719915279'
+lifecycle_stage: active
+run_id: c8e9e4470cf74316bd45f696b5cb06ba
+run_name: melodic-dolphin-283
+run_uuid: c8e9e4470cf74316bd45f696b5cb06ba
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711224310303
+status: 3
+tags: []
+user_id: HP

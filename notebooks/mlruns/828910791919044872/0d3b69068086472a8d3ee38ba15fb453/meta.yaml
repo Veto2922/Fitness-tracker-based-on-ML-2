@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/HP/Fitness-tracker-based-on-ML-2/notebooks/mlruns/828910791919044872/0d3b69068086472a8d3ee38ba15fb453/artifacts
+end_time: 1711224386348
+entry_point_name: ''
+experiment_id: '828910791919044872'
+lifecycle_stage: active
+run_id: 0d3b69068086472a8d3ee38ba15fb453
+run_name: calm-mare-793
+run_uuid: 0d3b69068086472a8d3ee38ba15fb453
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711224386235
+status: 3
+tags: []
+user_id: HP
