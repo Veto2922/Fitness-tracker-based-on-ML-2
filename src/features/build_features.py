@@ -127,6 +127,8 @@ subset = pca_df[pca_df["set"] == 35]
 # Plot the three principal components for the subset
 subset[['pca_1', 'pca_2', 'pca_3']].plot()
 
+
+
 # --------------------------------------------------------------
 # Sum of squares attributes
 # --------------------------------------------------------------
@@ -186,6 +188,7 @@ subset[['acc_y', 'acc_y_temp_mean_ws_5', 'acc_y_temp_std_ws_5']].plot()
 
 # Plot the temporal abstraction results for 'gyr_y'
 subset[['gyr_y', 'gyr_y_temp_mean_ws_5', 'gyr_y_temp_std_ws_5']].plot()
+
 
 # --------------------------------------------------------------
 # Frequency features
@@ -289,7 +292,25 @@ plt.legend()
 plt.show()
 
 
+"""selected = ['acc_y_freq_0.0_Hz_ws_14',
+                            'acc_z_freq_0.0_Hz_ws_14',
+                            'pca_1',
+                            'acc_y_temp_mean_ws_5',
+                            'cluster_label',
+                            'acc_y',
+                            'gyr_r_freq_0.0_Hz_ws_14',
+                            'pca_2',
+                            'acc_z_temp_mean_ws_5',
+                            'acc_x_freq_0.0_Hz_ws_14',
+                            'acc_z',
+                            'acc_x_temp_mean_ws_5',
+                            'gyr_z_temp_std_ws_5',
+                            'gyr_r_temp_mean_ws_5',
+                            'acc_y_max_freq']
 
+input_data = cluster_df[selected].iloc[3000]
+input_data = input_data.to_numpy().reshape(1, -1)
+"""
 # Create a 3D plot for visualization
 fig = plt.figure(figsize=(15, 15))
 ax = fig.add_subplot(projection="3d")
