@@ -6,6 +6,8 @@ Imagine yourself at the gym, pushing through your strength training routine, but
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
+- [Block Diagram](#block-diagram)
+- [Video Demonstration](#video-demonstration)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Contact Information](#contact-information)
@@ -43,6 +45,19 @@ To use the project:
 - **Machine Learning Integration**: Utilizes advanced machine learning models built through a comprehensive lifecycle, including data cleaning, preprocessing, feature engineering, model selection, and evaluation.
 - **Superior Performance**: Achieves better performance compared to existing solutions, such as the work done by Dave Ebbelaar in his master's degree project.
 - **Deployment and MLOps**: Implements modern deployment strategies using Flask and MLOps tools like MLflow, along with continuous integration and continuous delivery (CI/CD) practices.
+
+## Block Diagram
+Below is a block diagram illustrating the architecture of the Fitness Tracker Based on ML:
+![block diagram](https://github.com/Veto2922/Fitness-tracker-based-on-ML-2/assets/73383924/e8990d07-a6f0-4d1e-93ea-8d5902014141)
+
+## Video Demonstration
+Watch the video demonstration of the app in action:
+
+
+https://github.com/Veto2922/Fitness-tracker-based-on-ML-2/assets/73383924/7008bb17-113c-43cd-9c31-26f7f75c0c4d
+
+
+
 
 ## Documentation
 For detailed information about the project, please refer to our Medium post which contains comprehensive documentation: [Medium Article](https://medium.com/@abdelrahman.m2922/fitness-tracker-based-on-ml-b604e1e884c2).
