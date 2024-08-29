@@ -4,7 +4,7 @@ Imagine yourself at the gym, pushing through your strength training routine, but
 
 [Project Web site](https://aem-fitness-app.onrender.com/)
 
-[Project Medium Article](https://medium.com/@abdelrahman.m2922/fitness-tracker-based-on-ml-b604e1e884c2)
+[Project Medium Article](https://medium.com/@monaanafe3/smart-strength-training-tracker-ef6fc68c5fda)
 
 
 ## Project Video Demonstration
